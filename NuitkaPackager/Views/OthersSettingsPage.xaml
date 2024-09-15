@@ -1,0 +1,94 @@
+﻿<Page
+    x:Class="NuitkaPackager.Views.OthersSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer HorizontalScrollMode="Disabled">
+        <StackPanel Margin="24,0,24,12" Spacing="8">
+            <TextBlock
+                FontSize="20"
+                FontWeight="Bold"
+                Text="其他选项" />
+            <ToggleSwitch
+                Margin="0,4,0,0"
+                FontWeight="SemiBold"
+                IsOn="{x:Bind ViewModel.IsFullyCustom, Mode=TwoWay}"
+                OffContent="完全自定义模式，屏蔽所有选项只是用添加的这里的参数"
+                OnContent="完全自定义模式，屏蔽所有选项只是用添加的这里的参数" />
+            <ToggleSwitch
+                Margin="0,0,0,0"
+                FontWeight="SemiBold"
+                IsOn="{x:Bind ViewModel.IsCustomSetting, Mode=TwoWay}"
+                OffContent="手动添加其他选项，换行分隔"
+                OnContent="手动添加其他选项，换行分隔" />
+            <TextBox
+                MinWidth="400"
+                AcceptsReturn="True"
+                AutomationProperties.Name="multi-line TextBox"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.CustomSetting, Mode=TwoWay}"
+                TextWrapping="Wrap" />
+            <StackPanel
+                Height="54"
+                Margin="-24,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Orientation="Horizontal"
+                Spacing="8">
+                <Button
+                    Name="ExportButton"
+                    Width="120"
+                    Height="36"
+                    Click="ExportButton_Click"
+                    Margin="10,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderThickness="0"
+                    CornerRadius="3,18,18,3"
+                    Style="{ThemeResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xEDE1;" />
+                        <TextBlock Text="导出配置" />
+                    </StackPanel>
+                </Button>
+                <Button
+                    Name="ImportButton"
+                    Width="120"
+                    Height="36"
+                    Margin="10,10,0,0"
+                    Click="ImportButton_Click"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderThickness="0"
+                    CornerRadius="18,18,18,18"
+                    Style="{ThemeResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xEDE2;" />
+                        <TextBlock Text="导入配置" />
+                    </StackPanel>
+                </Button>
+                <Button
+                    Name="ExportCommandButton"
+                    Width="120"
+                    Height="36"
+                    Margin="10,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderThickness="0"
+                    Click="ExportCommandButton_Click"
+                    CornerRadius="18,18,18,18"
+                    Style="{ThemeResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xF584;" />
+                        <TextBlock Text="导出命令" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

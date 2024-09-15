@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "NuitkaPackager (Unpackaged)": {
+        "commandName": "Project"
+      },
+      "NuitkaPackager (Package)": {
+        "commandName": "MsixPackage"
+      }
+    }
+}

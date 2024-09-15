@@ -1,0 +1,101 @@
+﻿<Page
+    x:Class="NuitkaPackager.Views.AdvanceSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer HorizontalScrollMode="Disabled">
+        <StackPanel Margin="24,0,24,12" Spacing="8">
+            <TextBlock
+                FontSize="20"
+                FontWeight="Bold"
+                Text="资源设置" />
+
+            <ToggleSwitch
+                IsOn="{x:Bind ViewModel.IsIncludeDataFile, Mode=TwoWay}"
+                OffContent="单个资源文件(--include-data-file)，自己补充=后的相对路径"
+                OnContent="单个资源文件(--include-data-file)，自己补充=后的相对路径" />
+            <Grid Margin="-24,0,0,0">
+                <Button
+                    Height="36"
+                    Padding="24,0,16,0"
+                    VerticalAlignment="Top"
+                    BorderThickness="0"
+                    Command="{x:Bind ViewModel.SelectFileCommand}"
+                    CornerRadius="3,18,18,3"
+                    Style="{ThemeResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xEC50;" />
+                        <TextBlock Text="选择" />
+                    </StackPanel>
+                </Button>
+                <TextBox
+                    MinWidth="400"
+                    Margin="108,0,0,0"
+                    AcceptsReturn="True"
+                    AutomationProperties.Name="multi-line TextBox"
+                    CornerRadius="18"
+                    IsSpellCheckEnabled="True"
+                    Text="{x:Bind ViewModel.DataFile, Mode=TwoWay}"
+                    TextWrapping="Wrap" />
+            </Grid>
+
+            <ToggleSwitch
+                IsOn="{x:Bind ViewModel.IsIncludeDataDir, Mode=TwoWay}"
+                OffContent="资源目录(--include-data-dir)，自己补充=后的相对路径"
+                OnContent="资源目录(--include-data-dir)，自己补充=后的相对路径" />
+            <Grid Margin="-24,0,0,0">
+                <Button
+                    Height="36"
+                    Padding="24,0,16,0"
+                    VerticalAlignment="Top"
+                    BorderThickness="0"
+                    Command="{x:Bind ViewModel.SelectFolderCommand}"
+                    CommandParameter="DataDir"
+                    CornerRadius="3,18,18,3"
+                    Style="{ThemeResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE838;" />
+                        <TextBlock Text="选择" />
+                    </StackPanel>
+                </Button>
+                <TextBox
+                    MinWidth="400"
+                    Margin="108,0,0,0"
+                    AcceptsReturn="True"
+                    AutomationProperties.Name="multi-line TextBox"
+                    CornerRadius="18"
+                    IsSpellCheckEnabled="True"
+                    Text="{x:Bind ViewModel.DataDir, Mode=TwoWay}"
+                    TextWrapping="Wrap" />
+            </Grid>
+            <ToggleSwitch
+                IsOn="{x:Bind ViewModel.IsCopyDependency, Mode=TwoWay}"
+                OffContent="拷贝依赖(将整理好的依赖/资源文件放到一个文件夹)"
+                OnContent="拷贝依赖(将整理好的依赖/资源文件放到一个文件夹)" />
+            <Grid Margin="-24,0,0,0">
+                <Button
+                    Height="36"
+                    Padding="24,0,16,0"
+                    BorderThickness="0"
+                    Command="{x:Bind ViewModel.SelectFolderCommand}"
+                    CommandParameter="DependencyDir"
+                    CornerRadius="3,18,18,3"
+                    Style="{ThemeResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE838;" />
+                        <TextBlock Text="选择" />
+                    </StackPanel>
+                </Button>
+                <TextBox
+                    MinWidth="400"
+                    Margin="108,0,0,0"
+                    CornerRadius="18"
+                    IsSpellCheckEnabled="True"
+                    Text="{x:Bind ViewModel.DependencyDir, Mode=TwoWay}" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

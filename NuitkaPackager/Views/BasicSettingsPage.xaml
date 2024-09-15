@@ -1,0 +1,147 @@
+﻿<Page
+    x:Class="NuitkaPackager.Views.BasicSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:NuitkaPackager.Helpers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:s="NuitkaPackager.Contracts.Services"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    </Page.Resources>
+    <ScrollViewer HorizontalScrollMode="Disabled">
+        <Grid>
+            <StackPanel Margin="24,0,24,12">
+                <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="基本设置" />
+
+                <TextBlock
+                    Margin="0,12,0,0"
+                    FontWeight="SemiBold"
+                    Text="入口脚本" />
+                <Grid Margin="-24,8,0,0">
+                    <Button
+                        Height="36"
+                        Padding="24,0,16,0"
+                        BorderThickness="0"
+                        Command="{x:Bind ViewModel.SelectFileCommand}"
+                        CommandParameter=".py"
+                        CornerRadius="3,18,18,3"
+                        Style="{ThemeResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xEC50;" />
+                            <TextBlock Text="选择" />
+                        </StackPanel>
+                    </Button>
+                    <TextBox
+                        MinWidth="400"
+                        Margin="108,0,0,0"
+                        CornerRadius="18"
+                        IsSpellCheckEnabled="True"
+                        Text="{x:Bind ViewModel.PyFilePath, Mode=TwoWay}" />
+                </Grid>
+                <!--  图标  -->
+                <ToggleSwitch
+                    IsOn="{x:Bind ViewModel.IsEnableIcon, Mode=TwoWay}"
+                    OffContent="启用ico图标(-windows-icon-from-ico=)"
+                    OnContent="启用ico图标(-windows-icon-from-ico=)" />
+                <Grid Margin="-24,0,0,0">
+                    <Button
+                        Height="36"
+                        Padding="24,0,16,0"
+                        BorderThickness="0"
+                        Command="{x:Bind ViewModel.SelectFileCommand}"
+                        CommandParameter=".ico"
+                        CornerRadius="3,18,18,3"
+                        Style="{ThemeResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE8B9;" />
+                            <TextBlock Text="选择" />
+                        </StackPanel>
+                    </Button>
+                    <TextBox
+                        MinWidth="400"
+                        Margin="108,0,0,0"
+                        CornerRadius="18"
+                        IsSpellCheckEnabled="True"
+                        Text="{x:Bind ViewModel.IconPath, Mode=TwoWay}" />
+                </Grid>
+                <!--  输出目录  -->
+                <ToggleSwitch
+                    IsOn="{x:Bind ViewModel.IsEnableOut, Mode=TwoWay}"
+                    OffContent="输出文件夹，否则输入文件的本地目录(--output-dir=)"
+                    OnContent="输出文件夹，否则输入文件的本地目录(--output-dir=)" />
+                <Grid Margin="-24,0,0,0">
+                    <Button
+                        Height="36"
+                        Padding="24,0,16,0"
+                        BorderThickness="0"
+                        Command="{x:Bind ViewModel.SelectFolderCommand}"
+                        CornerRadius="3,18,18,3"
+                        Style="{ThemeResource AccentButtonStyle}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE838;" />
+                            <TextBlock Text="选择" />
+                        </StackPanel>
+                    </Button>
+                    <TextBox
+                        MinWidth="400"
+                        Margin="108,0,0,0"
+                        CornerRadius="18"
+                        IsSpellCheckEnabled="True"
+                        Text="{x:Bind ViewModel.OutputPath, Mode=TwoWay}" />
+                </Grid>
+                <!--  其他设置  -->
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsMingw64, Mode=TwoWay}"
+                        OffContent="以mingw64编译(--mingw64)"
+                        OnContent="以mingw64编译(--mingw64)" />
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsaYesfdownload, Mode=TwoWay}"
+                        OffContent="同意所有下载(--assume-yes-for-downloads)"
+                        OnContent="同意所有下载(--assume-yes-for-downloads)" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsAdmin, Mode=TwoWay}"
+                        OffContent="运行请求管理员权限(-windows-uac-admin)"
+                        OnContent="运行请求管理员权限(-windows-uac-admin)" />
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsShowMemory, Mode=TwoWay}"
+                        OffContent="显示内存的占用(--show-memory)"
+                        OnContent="显示内存的占用(--show-memory)" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsSandalone, Mode=TwoWay}"
+                        OffContent="独立环境(--standalone)"
+                        OnContent="独立环境(--standalone)" />
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsRemoveOutput, Mode=TwoWay}"
+                        OffContent="删除构建文件夹(--remove-output)"
+                        OnContent="删除构建文件夹(--remove-output)" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsOneFile, Mode=TwoWay}"
+                        OffContent="单文件(--onefile)"
+                        OnContent="单文件(--onefile)" />
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsModule, Mode=TwoWay}"
+                        OffContent="创建一个扩展模块，而不是一个程序(--module)"
+                        OnContent="创建一个扩展模块，而不是一个程序(--module)" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <ToggleSwitch
+                        IsOn="{x:Bind ViewModel.IsDisableConsole, Mode=TwoWay}"
+                        OffContent="隐藏Cmd (-windows-disable-console)"
+                        OnContent="隐藏Cmd (-windows-disable-console)" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

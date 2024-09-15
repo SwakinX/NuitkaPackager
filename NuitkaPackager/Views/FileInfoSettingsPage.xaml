@@ -1,0 +1,92 @@
+﻿<Page
+    x:Class="NuitkaPackager.Views.FileInfoSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <ScrollViewer HorizontalScrollMode="Disabled">
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="24,0,24,12"
+            Spacing="8">
+            <Button
+                Content="文件信息"
+                FontSize="20"
+                FontWeight="Bold"
+                IsHitTestVisible="False"
+                Style="{StaticResource ButtonTextBlockStyle}" />
+
+            <TextBlock
+                Margin="0,10,0,0"
+                FontWeight="SemiBold"
+                Text="公司名称(–company-name=)" />
+            <TextBox
+                MinWidth="400"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.CompanyName, Mode=TwoWay}" />
+            <TextBlock
+                Margin="0,12,0,0"
+                FontWeight="SemiBold"
+                Text="产品名称(–product-name)" />
+            <TextBox
+                MinWidth="400"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.ProductName, Mode=TwoWay}" />
+            <TextBlock
+                Margin="0,12,0,0"
+                FontWeight="SemiBold"
+                Text="文件描述(–file-description)" />
+            <TextBox
+                MinWidth="400"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.FileDescription, Mode=TwoWay}"
+                TextWrapping="Wrap" />
+            <TextBlock
+                Margin="0,12,0,0"
+                FontWeight="SemiBold"
+                Text="文件版本(–file-version)" />
+            <TextBox
+                MinWidth="400"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.FileVersion, Mode=TwoWay}" />
+
+            <TextBlock
+                Margin="0,12,0,0"
+                FontWeight="SemiBold"
+                Text="产品版本(–product-version)" />
+            <TextBox
+                MinWidth="400"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.ProductVersion, Mode=TwoWay}" />
+            <TextBlock
+                Margin="0,12,0,0"
+                FontWeight="SemiBold"
+                Text="版权信息(--copyright)" />
+            <TextBox
+                MinWidth="400"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.Copyright, Mode=TwoWay}" />
+
+            <TextBlock
+                Margin="0,12,0,0"
+                FontWeight="SemiBold"
+                Text="版本信息中使用的商标(--trademarks)" />
+            <TextBox
+                MinWidth="400"
+                CornerRadius="18"
+                IsSpellCheckEnabled="True"
+                Text="{x:Bind ViewModel.Trademarks, Mode=TwoWay}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+
