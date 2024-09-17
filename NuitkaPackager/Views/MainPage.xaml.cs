@@ -18,7 +18,6 @@ public sealed partial class MainPage : Page
     }
     private Process? process;
     private int flag = 0;
-    private string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
     public MainPage()
     {
         ViewModel = App.GetService<MainViewModel>();
@@ -92,22 +91,29 @@ public sealed partial class MainPage : Page
     }
     private async Task CopyFiles()
     {
+        var currentTime = "";
         if (Directory.Exists(AppConfig.DependencyDir))
         {
             var pyFileName = Path.GetFileNameWithoutExtension(AppConfig.PyFilePath);
             var outdir = "";
+            
             if (AppConfig.IsEnableOut)
                 outdir = AppConfig.OutputPath;
             else
                 outdir = Path.GetDirectoryName(AppConfig.PyFilePath);
             var destinationDir = Path.Combine(outdir, pyFileName + ".dist");
-            
+            currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             FormattingConsoleOutput($"INFO: [{currentTime}] 开始复制依赖文件");
             await Task.Run(() => {
                 CopyDirectory(AppConfig.DependencyDir, destinationDir);
             });
-            //currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             FormattingConsoleOutput($"INFO: [{currentTime}] 复制完成");
+        }
+        else
+        {
+            currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            FormattingConsoleOutput($"INFO: [{currentTime}] 依赖目录不存在");
         }
         new ToastContentBuilder()
         .AddText("编译执行完成")

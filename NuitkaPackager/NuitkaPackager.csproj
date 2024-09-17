@@ -23,6 +23,9 @@
     <Content Remove="Assets\BB.ico" />
     <Content Remove="Assets\Seraph.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\BB.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />

@@ -43,7 +43,7 @@
                 FontWeight="SemiBold"
                 Text="相关链接" />
             <TextBlock Margin="0,8,0,0" HorizontalAlignment="Left">
-                <Hyperlink NavigateUri="https://github.com/SwakinX/nuitkapackger" UnderlineStyle="None">
+                <Hyperlink NavigateUri="https://github.com/SwakinX/NuitkaPackager" UnderlineStyle="None">
                     <Run
                         FontWeight="Bold"
                         Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
