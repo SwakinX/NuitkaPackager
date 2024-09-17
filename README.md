@@ -10,8 +10,12 @@ NuitkaPackager
 ## 功能简介
 基于winUI3的[nutika](https://github.com/Nuitka/Nuitka)GUI，根据个人的使用需求添加了常用的设置选项，可以导出命令，还可以在结束后复制整理好的资源和依赖文件
 
+## 下载安装
+
+前往 [Releases](https://github.com/SwakinX/NuitkaPackager/releases) 下载后解压双击BB图标的 `NuitkaPackager.exe` 打开图形界面
+
 ## 注意事项
-不提供环境配置，用的默认环境执行，我用的是nuitka2.4..5，没用过老版本，不清楚能否正常使用，以及--include-data-file和--include-data-dir我按照官方文档怎么改命令都不行，不过还是保留了选项，可能老版本的能用吧，反正可以直接自动复制整理好的文件
+不提供环境配置，用的默认环境执行，我用的是nuitka2.4..5，没用过老版本，不清楚能否正常使用，以及 `--include-data-file` 和 `--include-data-dir` 我按照官方文档怎么改命令都不行，不过还是保留了选项，可能老版本的能用吧，反正可以直接自动复制整理好的文件
 
 ## 界面展示
 ![image](https://github.com/user-attachments/assets/65d9eab0-c89f-4713-bbd4-6c85c0b1342d)
