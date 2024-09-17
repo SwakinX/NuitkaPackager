@@ -12,7 +12,7 @@ NuitkaPackager
 
 ## 下载安装
 
-前往 [Releases](https://github.com/SwakinX/NuitkaPackager/releases) 下载后解压双击BB图标的 `NuitkaPackager.exe` 打开图形界面
+前往 [Releases](https://github.com/SwakinX/NuitkaPackager/releases) 下载后解压双击带图标的 `NuitkaPackager.exe` 打开图形界面
 
 ## 注意事项
 不提供环境配置，用的默认环境执行，我用的是nuitka2.4..5，没用过老版本，不清楚能否正常使用，以及 `--include-data-file` 和 `--include-data-dir` 我按照官方文档怎么改命令都不行，不过还是保留了选项，可能老版本的能用吧，反正可以直接自动复制整理好的文件
