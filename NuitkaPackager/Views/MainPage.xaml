@@ -38,15 +38,15 @@
                 Margin="10,10,0,0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                BorderThickness="0"
                 Click="StopButton_Click"
-                CornerRadius="18,18,18,18"
-                Style="{ThemeResource ButtonRevealStyle}">
+                Style="{ThemeResource StopButtonStyle}">
+              
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <FontIcon Glyph="&#xE71A;" />
                     <TextBlock Text="停止" />
                 </StackPanel>
             </Button>
+
             <Button
                 Name="ClearButton"
                 Width="100"

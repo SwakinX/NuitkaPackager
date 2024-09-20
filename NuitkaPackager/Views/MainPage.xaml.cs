@@ -31,7 +31,7 @@ public sealed partial class MainPage : Page
         {
             process.Kill();
         }
-
+        flag = 0;
         process = new Process
         {
             StartInfo = new ProcessStartInfo
@@ -69,6 +69,7 @@ public sealed partial class MainPage : Page
         };
 
         process.Start();
+        ExecuteButton.IsEnabled = false;
         ClearButton.IsEnabled = false;
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
@@ -79,6 +80,13 @@ public sealed partial class MainPage : Page
         {
             await CopyFiles();
         }
+        else if (flag == -1)
+        {
+            new ToastContentBuilder()
+        .AddText("停止执行")
+        .AddAudio(new Uri("ms-winsoundevent:Notification.IM"))
+        .Show();
+        }
         else
         {
             new ToastContentBuilder()
@@ -87,6 +95,7 @@ public sealed partial class MainPage : Page
         .Show();
         }
         ClearButton.IsEnabled = true;
+        ExecuteButton.IsEnabled = true;
         FormattingConsoleOutput("--------------------------------------------------------------------\n");
     }
     private async Task CopyFiles()
@@ -168,7 +177,7 @@ public sealed partial class MainPage : Page
             //process.WaitForExit(); // 等待进程完全退出
             process.Dispose(); // 释放资源
             process = null; // 重置进程对象
-            flag++;
+            flag = -1;
             //ClearButton.IsEnabled = true;
         }
     }

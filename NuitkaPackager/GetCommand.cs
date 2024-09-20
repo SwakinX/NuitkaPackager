@@ -76,15 +76,15 @@ public static class GetCommand
                 Condition = () => AppConfig.IsFollowImports
             },
             new() {
-                Command = "--include-package=" + AppConfig.IncludePackage,
+                Command = GetIncludes("--include-package=" , AppConfig.IncludePackage),
                 Condition = () => !string.IsNullOrEmpty(AppConfig.IncludePackage)
             },
             new() {
-                Command = "--nofollow-import-to=" + AppConfig.NofollowImport,
+                Command =  GetIncludes("--nofollow-import-to=" , AppConfig.NofollowImport),
                 Condition = () => !string.IsNullOrEmpty(AppConfig.NofollowImport)
             },
             new() {
-                Command = "--include-module=" + AppConfig.IncludeModule,
+                Command =  GetIncludes("--include-module=" , AppConfig.IncludeModule),
                 Condition = () => !string.IsNullOrEmpty(AppConfig.IncludeModule)
             },
             new() {
@@ -180,16 +180,30 @@ public static class GetCommand
         var plugin = string.Join(",", plugins);
         return "--enable-plugins=" + plugin;
     }
+
+    private static readonly char[] separator = ['\r', '\n', '\t', ' ', ',', '.'];
+
     private static string GetIncludeDirs(string ahead, string? str)
     {
-        var include = "";
-        if (string.IsNullOrEmpty(str)) return include;
-        var paths = str.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        var command = "";
+        if (string.IsNullOrEmpty(str)) return "";
+        var paths = str.Split(separator, StringSplitOptions.RemoveEmptyEntries);
         foreach (var path in paths)
         {
-            include += " " + ahead + path;
+            command += " " + ahead + path;
         }
-        return include;
-    
-    } 
+        return command;
+    }
+    private static string GetIncludes(string ahead, string? str)
+    {
+        var command = ahead;
+        if (string.IsNullOrEmpty(str)) return "";
+        var includes = str.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+        foreach (var include in includes)
+        {
+            command += include + ",";
+        }
+        command = command.TrimEnd(',');
+        return command;
+    }
 }

@@ -30,7 +30,48 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
+            <Style x:Key="StopButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#ff6767" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Style" Value="{ThemeResource ButtonRevealStyle}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Rectangle
+                                    x:Name="BackgroundRectangle"
+                                    Fill="{TemplateBinding Background}"
+                                    RadiusX="18"
+                                    RadiusY="18" />
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="BackgroundRectangle"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0.8"
+                                                    Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="BackgroundRectangle"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0.6"
+                                                    Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

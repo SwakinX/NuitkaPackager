@@ -19,7 +19,7 @@
                 <TextBlock
                     Margin="0,0,0,0"
                     FontWeight="SemiBold"
-                    Text="手动包含模块(--include-package=)" />
+                    Text="手动包含的包(--include-package=)" />
                 <TextBox
                     MinWidth="400"
                     AcceptsReturn="True"
@@ -31,7 +31,7 @@
                 <TextBlock
                     Margin="0,12,0,0"
                     FontWeight="SemiBold"
-                    Text="手动不包含模块(--nofollow-import-to=)" />
+                    Text="手动不包含的模块和包(--nofollow-import-to=)" />
                 <TextBox
                     MinWidth="400"
                     AcceptsReturn="True"
@@ -43,7 +43,7 @@
                 <TextBlock
                     Margin="0,12,0,0"
                     FontWeight="SemiBold"
-                    Text="手动包含.py的模块，以空格1换行分隔(-include-module=)" />
+                    Text="手动包含的模块(-include-module=)" />
                 <TextBox
                     MinWidth="400"
                     AcceptsReturn="True"
@@ -72,7 +72,7 @@
                             <Setter Property="MinWidth" Value="150" />
                         </Style>
                     </GridView.ItemContainerStyle>
-                    <CheckBox Content="qt-plugins" IsChecked="{x:Bind ViewModel.IsQt, Mode=TwoWay}" />
+                    <CheckBox Content="pyqt5" IsChecked="{x:Bind ViewModel.IsQt, Mode=TwoWay}" />
                     <CheckBox Content="pyside6" IsChecked="{x:Bind ViewModel.IsPyside6, Mode=TwoWay}" />
                     <CheckBox Content="tk-inter" IsChecked="{x:Bind ViewModel.IsTkinter, Mode=TwoWay}" />
                     <CheckBox Content="numpy" IsChecked="{x:Bind ViewModel.IsNumpy, Mode=TwoWay}" />
