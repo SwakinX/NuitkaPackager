@@ -430,6 +430,7 @@ public static class AppConfig
                 {
                     new ToastContentBuilder()
                 .AddText("错误键："+ kvp.Key +" 值：" + kvp.Value +"\n错误信息： " + ex.ToString())
+                .SetToastDuration(ToastDuration.Long)
                 .Show();
                 }
             }

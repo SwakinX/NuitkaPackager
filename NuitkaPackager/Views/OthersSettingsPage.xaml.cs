@@ -5,6 +5,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using NuitkaPackager.ViewModels;
 using Windows.ApplicationModel.DataTransfer;
 using WinUIEx.Messaging;
+using System.Diagnostics;
 
 namespace NuitkaPackager.Views;
 
@@ -51,10 +52,26 @@ public sealed partial class OthersSettingsPage : Page
         new ToastContentBuilder()
         .AddText("命令已复制到剪贴板")
         .AddAudio(new Uri("ms-winsoundevent:Notification.IM"))
+        .SetToastDuration(ToastDuration.Long)
         .Show();
         await SimulatePasteAsync();
     }
-
+    private async void ExecuteCommandButton_Click(object sender, RoutedEventArgs e)
+    {
+        Process? process;
+        process = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                Arguments = "/k python " + GetCommand.Get(),
+                UseShellExecute = true,
+                CreateNoWindow = false,
+            }
+        };
+        process.Start();
+        await Task.Run(() => process.WaitForExit());
+    }
     [DllImport("user32.dll")]
     public static extern IntPtr GetForegroundWindow();
 
@@ -73,7 +90,7 @@ public sealed partial class OthersSettingsPage : Page
     {
         // 获取记事本的进程
         System.Diagnostics.Process.Start("cmd.exe", "/c start notepad.exe");
-        await Task.Delay(500);
+        await Task.Delay(800);
         var notepadProcesses = System.Diagnostics.Process.GetProcessesByName("notepad");
         if (notepadProcesses.Length == 0)
         {

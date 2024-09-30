@@ -85,6 +85,7 @@ public sealed partial class MainPage : Page
             new ToastContentBuilder()
         .AddText("停止执行")
         .AddAudio(new Uri("ms-winsoundevent:Notification.IM"))
+        .SetToastDuration(ToastDuration.Long)
         .Show();
         }
         else
@@ -92,6 +93,7 @@ public sealed partial class MainPage : Page
             new ToastContentBuilder()
         .AddText("编译失败")
         .AddAudio(new Uri("ms-winsoundevent:Notification.IM"))
+        .SetToastDuration(ToastDuration.Long)
         .Show();
         }
         ClearButton.IsEnabled = true;
@@ -127,6 +129,7 @@ public sealed partial class MainPage : Page
         new ToastContentBuilder()
         .AddText("编译执行完成")
         .AddAudio(new Uri("ms-winsoundevent:Notification.IM"))
+        .SetToastDuration(ToastDuration.Long)
         .Show();
     }
     private void CopyDirectory(string sourceDir, string destinationDir)
@@ -151,16 +154,16 @@ public sealed partial class MainPage : Page
     {
         if (!string.IsNullOrEmpty(output))
         {
-            if (output.IndexOf("FATAL:", StringComparison.OrdinalIgnoreCase) >= 0)
+            if (output.IndexOf("FATAL", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 flag++;
             }
             Paragraph text;
-            if (output.IndexOf("ERROR:", StringComparison.OrdinalIgnoreCase) >= 0) { 
+            if (output.IndexOf("ERROR", StringComparison.OrdinalIgnoreCase) >= 0) { 
                 text = new Paragraph { Inlines = { new Run { Text = output, Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 60, 72)) } } };
                 flag++;
             }
-            else if (output.IndexOf("WARNING:", StringComparison.OrdinalIgnoreCase) >= 0)
+            else if (output.IndexOf("WARNING", StringComparison.OrdinalIgnoreCase) >= 0)
                 text = new Paragraph { Inlines = { new Run { Text = output, Foreground = new SolidColorBrush(Color.FromArgb(255, 249, 241, 165)) } } };
             else
                 text = new Paragraph { Inlines = { new Run { Text = output } } };
