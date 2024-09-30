@@ -181,7 +181,7 @@ public static class GetCommand
         return "--enable-plugins=" + plugin;
     }
 
-    private static readonly char[] separator = ['\r', '\n', '\t', ' ', ',', '.'];
+    private static readonly char[] separator = ['\r', '\n', '\t', ' ', ','];
 
     private static string GetIncludeDirs(string ahead, string? str)
     {
