@@ -154,16 +154,16 @@ public sealed partial class MainPage : Page
     {
         if (!string.IsNullOrEmpty(output))
         {
-            if (output.IndexOf("FATAL", StringComparison.OrdinalIgnoreCase) >= 0)
+            if (output.Contains("FATAL:", StringComparison.OrdinalIgnoreCase))
             {
                 flag++;
             }
             Paragraph text;
-            if (output.IndexOf("ERROR", StringComparison.OrdinalIgnoreCase) >= 0) { 
+            if (output.Contains("ERROR:", StringComparison.OrdinalIgnoreCase) || output.Contains("Traceback (most recent call last):", StringComparison.OrdinalIgnoreCase)) { 
                 text = new Paragraph { Inlines = { new Run { Text = output, Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 60, 72)) } } };
                 flag++;
             }
-            else if (output.IndexOf("WARNING", StringComparison.OrdinalIgnoreCase) >= 0)
+            else if (output.Contains("WARNING:", StringComparison.OrdinalIgnoreCase))
                 text = new Paragraph { Inlines = { new Run { Text = output, Foreground = new SolidColorBrush(Color.FromArgb(255, 249, 241, 165)) } } };
             else
                 text = new Paragraph { Inlines = { new Run { Text = output } } };
