@@ -24,7 +24,7 @@ public sealed partial class OthersSettingsPage : Page
     private async void ExportButton_Click(object sender, RoutedEventArgs e)
     {
         // 选择导出目录并执行导出
-        var folder = await AppConfig.OpenFilePickerAsync(".json");
+        var folder = await AppConfig.SaveFilePickerAsync("json");
         if (folder != null)
         {
             await AppConfig.ExportSettingsAsync(folder.Path);

@@ -315,6 +315,21 @@ public static class AppConfig
         }
         await _localSettingsService.SaveSettingAsync(key, value);
     }
+    public static async Task<StorageFile> SaveFilePickerAsync(string? fileTypeSuggestedName = null)
+    {
+        // 初始化 FileSavePicker
+        FileSavePicker picker = new FileSavePicker
+        {
+            SuggestedStartLocation = PickerLocationId.DocumentsLibrary, // 建议的起始地点
+            FileTypeChoices = { { fileTypeSuggestedName ?? "文件", new List<string> { ".json"} } }, // 默认文件类型
+        };
+
+        // 获取当前窗口句柄
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
+        WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+        return await picker.PickSaveFileAsync();
+    }
 
     public static async Task<StorageFile> OpenFilePickerAsync(string? fileTypeFilter = null)
     {
